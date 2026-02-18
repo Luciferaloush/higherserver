@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-productSchema.pre('save', async function (next) {
+productSchema.pre('save', async function () {
   let baseSlug = slugify(this.title, { lower: true });
   let slug = baseSlug;
   let counter = 1;
@@ -41,7 +41,6 @@ productSchema.pre('save', async function (next) {
   }
 
   this.slug = slug;
-  next();
 });
 
 export default mongoose.model('Products', productSchema);

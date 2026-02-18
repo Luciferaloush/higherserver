@@ -25,9 +25,8 @@ const serviceSchema = new mongoose.Schema(
   }
 );
 
-serviceSchema.pre('save', function (next) {
+serviceSchema.pre('save', function () {
   this.slug = slugify(this.name, { lower: true });
-  next();
 });
 
 export default mongoose.model('Service', serviceSchema);

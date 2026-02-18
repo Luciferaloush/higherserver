@@ -11,8 +11,7 @@ const articleSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 }, { timestamps: true });
-articleSchema.pre('save', function (next) {
+articleSchema.pre('save', function () {
   this.slug = slugify(this.title, { lower: true });
-  next();
 });
 export default mongoose.model('Article', articleSchema);
