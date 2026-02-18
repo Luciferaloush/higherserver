@@ -79,9 +79,8 @@ app.get("/api/health", (req, res) => {
 app.use((req, res) => {
   res.status(404).json({ error: "Route not found" });
 });
-app.use((err, req, res, next) => {
-  globalErrorHandler(err, req, res, next);
-});
+app.use(globalErrorHandler);
+
 app.listen(3000, '0.0.0.0', () => {
   console.log("Server running on port 3000");
 });
