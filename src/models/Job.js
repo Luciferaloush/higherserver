@@ -42,7 +42,7 @@ const jobSchema = new mongoose.Schema(
   }
 );
 
-jobSchema.pre('save', async function (next) {
+jobSchema.pre('save', async function () {
   let baseSlug = slugify(this.title, { lower: true });
   let slug = baseSlug;
   let counter = 1;
@@ -55,7 +55,6 @@ jobSchema.pre('save', async function (next) {
   }
 
   this.slug = slug;
-  next();
 });
 
 
