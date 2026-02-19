@@ -8,7 +8,7 @@ export const createPublicNotification = async ({
   topic,
 }) => {
   try {
-    const messaging = getMessaging(); // ⬅️ هون الصح
+    const messaging = getMessaging(); 
 
     await messaging.send({
   topic,

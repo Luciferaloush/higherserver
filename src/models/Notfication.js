@@ -21,31 +21,10 @@ const notificationSchema = new mongoose.Schema(
 
     // معلومات مرتبطة بالاشعار (وظيفة - مقالة...)
     meta: {
-      jobId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Job",
-        default: null,
-      },
-      articleId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Article",
-        default: null,
-      },
-      productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Products",
-        default: null,
-      },
-      serviceId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Service",
-        default: null,
-      },
-      type: {
-        type: String,
-        enum: ["job", "article", "product", "service", "system"],
-      },
-    },
+  type: mongoose.Schema.Types.Mixed,
+  default: {},
+},
+
 
     // هل تمت قراءته من قبل المستخدم
     read: {
