@@ -5,6 +5,7 @@ import {
   deleteAllJob,
   getJobsById,
   getAllJobs,
+  searchJobs
 } from "../services/job.service.js";
 import { AppError, asyncHandler } from "../utils/errorHandler.js";
 
@@ -128,5 +129,23 @@ export const getJobById = asyncHandler(async (req, res) => {
   res.status(200).json({
     success: true,
     job,
+  });
+});
+
+
+export const searchJob = asyncHandler(async (req, res) => {
+  const { keyword, tags, company, page, limit } = req.query;
+
+  const result = await searchJobs({
+    keyword,
+    tags,
+    company,
+    page: Number(page) || 1,
+    limit: Number(limit) || 10,
+  });
+
+  res.status(200).json({
+    success: true,
+    ...result,
   });
 });

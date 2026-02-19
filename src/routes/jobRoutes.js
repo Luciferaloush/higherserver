@@ -1,6 +1,6 @@
 import express from 'express';
 import upload from '../middlewares/uploadMiddleware.js';
-import { createJob, editJob, getJob, getJobById, removeJob,removeAllJob } from '../controllers/job.controller.js';
+import { createJob, editJob, getJob, getJobById, removeJob,removeAllJob, searchJob } from '../controllers/job.controller.js';
 
 const router = express.Router();
 
@@ -12,6 +12,7 @@ router.delete('/delete-job/:id', removeJob);
 router.delete('/delete-all-jobs', removeAllJob);
 
 router.get('/get-all-job', getJob);
+router.get("/search", searchJob);
 
 router.get('/get-job-by-id/:id', getJobById);
 

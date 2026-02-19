@@ -96,3 +96,52 @@ export const getJobsById = async (id) => {
     throw error;
   }
 };
+
+
+export const searchJobs = async ({
+  keyword,
+  tags,
+  company,
+  page = 1,
+  limit = 10,
+}) => {
+  const query = {
+    active: true,
+  };
+
+  if (keyword) {
+    query.$or = [
+      { title: { $regex: keyword, $options: "i" } },
+      { description: { $regex: keyword, $options: "i" } },
+      { company: { $regex: keyword, $options: "i" } },
+    ];
+  }
+
+  if (tags) {
+    const tagsArray = Array.isArray(tags)
+      ? tags
+      : tags.split(",").map((t) => t.trim());
+
+    query.tags = { $in: tagsArray };
+  }
+
+  if (company) {
+    query.company = { $regex: company, $options: "i" };
+  }
+
+  const skip = (page - 1) * limit;
+
+  const jobs = await Job.find(query)
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
+
+  const total = await Job.countDocuments(query);
+
+  return {
+    jobs,
+    total,
+    page,
+    pages: Math.ceil(total / limit),
+  };
+};
