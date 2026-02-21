@@ -25,3 +25,16 @@ export const toggleSaveJob = async (userId, jobId) => {
     saved: !isSaved,
   };
 };
+
+export const getSavedJobs = async (userId) => {
+  const user = await User.findById(userId)
+    .populate({
+      path: "savedJobs",
+      match: { active: true }, 
+      options: { sort: { createdAt: -1 } },
+    });
+
+  if (!user) throw new AppError("User not found", 404);
+
+  return user.savedJobs;
+};
