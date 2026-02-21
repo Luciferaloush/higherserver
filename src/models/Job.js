@@ -18,6 +18,7 @@ const jobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    
     contactlink: {
       type: String,
       required: false,

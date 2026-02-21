@@ -18,6 +18,8 @@ import productRouter from "./routes/product.routes.js";
 import termsRouter from "./routes/terms.routes.js";
 import notifiactionsRouter  from './routes/notification.routes.js';
 import userRouter  from './routes/user.routes.js';
+import saveJob  from './routes/jobBookmark.routes.js';
+
 //import notificationRoutes from './routes/notificationRoutes.js';
 //import firebaseRoutes from './routes/firebaseRoutes.js';
 //import volunteerRoutes from './routes/volunteerRoutes.js';
@@ -54,6 +56,7 @@ app.use('/uploads', express.static(path.join(process.cwd(), 'uploads'), {
 app.use("/api/auth", authRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/jobs", jobRoutes);
+app.use("/api/jobs", saveJob);
 app.use("/api/articles", articleRoutes);
 app.use("/api/cv", cvRoutes);
 app.use("/api/cvDesginRequest", cvDesginRoutes);
@@ -63,6 +66,7 @@ app.use("/api/product", productRouter);
 app.use("/api/term", termsRouter);
 app.use("/api/notifiactions", notifiactionsRouter);
 app.use("/api/user", userRouter);
+
 //app.use('/api/cv', cvRoutes);
 //app.use('/api/jobs', jobRoutes);
 //app.use('/api/notifications', notificationRoutes);
