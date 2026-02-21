@@ -24,3 +24,24 @@ export const getMyProfileWithCV = asyncHandler(async (req, res) => {
     },
   });
 });
+
+export const getAllUsers = asyncHandler(async (req, res) => {
+
+  // تأكد إنه أدمن
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({
+      success: false,
+      message: 'Access denied. Admins only.',
+    });
+  }
+
+  const users = await User.find()
+    .select('-passwordHash')
+    .sort({ createdAt: -1 });
+
+  res.status(200).json({
+    success: true,
+    results: users.length,
+    data: users,
+  });
+});
