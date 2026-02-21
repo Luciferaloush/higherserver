@@ -17,6 +17,7 @@ import slotRouter from "./routes/slot.routes.js";
 import productRouter from "./routes/product.routes.js";
 import termsRouter from "./routes/terms.routes.js";
 import notifiactionsRouter  from './routes/notification.routes.js';
+import userRouter  from './routes/user.routes.js';
 //import notificationRoutes from './routes/notificationRoutes.js';
 //import firebaseRoutes from './routes/firebaseRoutes.js';
 //import volunteerRoutes from './routes/volunteerRoutes.js';
@@ -61,7 +62,7 @@ app.use("/api/slots", slotRouter);
 app.use("/api/product", productRouter);
 app.use("/api/term", termsRouter);
 app.use("/api/notifiactions", notifiactionsRouter);
-
+app.use("/api/user", userRouter);
 //app.use('/api/cv', cvRoutes);
 //app.use('/api/jobs', jobRoutes);
 //app.use('/api/notifications', notificationRoutes);
