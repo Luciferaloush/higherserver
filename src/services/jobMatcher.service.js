@@ -7,7 +7,7 @@ export const matchJobWithCVs = async (job) => {
   const keywords = [
     job.title,
     ...(job.tags || []),
-  ].map(k => k.toLowerCase());
+  ].flatMap(k => k.split(',')).map(k => k.toLowerCase());
 
   const cvs = await CV.find({ visibility: 'public' })
     .populate('userId');
